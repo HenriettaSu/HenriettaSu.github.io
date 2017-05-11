@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="webpack, gulp, 前端, 自動化構建," />
 
 
 
@@ -90,15 +90,17 @@
 
 
 
-<meta name="description" content="腦子不知道在想什麼的程序媛">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Henrie的小黑屋">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="webpack好用的地方我就不累述了，今天我是想說一下用webpack做多頁面應用，公共文件提取時，入口管理的一點事。 第一次聽這個工具的時候是從當時一個同事那知道的，但他的構建方式就不是那麼自動化，需要手動管理entry和chunk。 1234567891011121314151617module.exports = &amp;#123;	...	entry: &amp;#123;		&quot;index&quot;: buil">
+<meta name="keywords" content="webpack, gulp, 前端, 自動化構建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack構建多頁面應用的入口管理">
+<meta property="og:url" content="http://yoursite.com/2017/05/11/webpack構建多頁面應用的入口管理/index.html">
 <meta property="og:site_name" content="Henrie的小黑屋">
-<meta property="og:description" content="腦子不知道在想什麼的程序媛">
+<meta property="og:description" content="webpack好用的地方我就不累述了，今天我是想說一下用webpack做多頁面應用，公共文件提取時，入口管理的一點事。 第一次聽這個工具的時候是從當時一個同事那知道的，但他的構建方式就不是那麼自動化，需要手動管理entry和chunk。 1234567891011121314151617module.exports = &amp;#123;	...	entry: &amp;#123;		&quot;index&quot;: buil">
+<meta property="og:updated_time" content="2017-05-11T15:07:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Henrie的小黑屋">
-<meta name="twitter:description" content="腦子不知道在想什麼的程序媛">
+<meta name="twitter:title" content="webpack構建多頁面應用的入口管理">
+<meta name="twitter:description" content="webpack好用的地方我就不累述了，今天我是想說一下用webpack做多頁面應用，公共文件提取時，入口管理的一點事。 第一次聽這個工具的時候是從當時一個同事那知道的，但他的構建方式就不是那麼自動化，需要手動管理entry和chunk。 1234567891011121314151617module.exports = &amp;#123;	...	entry: &amp;#123;		&quot;index&quot;: buil">
 
 
 
@@ -126,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/11/webpack構建多頁面應用的入口管理/"/>
 
 
 
 
 
-  <title>Henrie的小黑屋</title>
+  <title>webpack構建多頁面應用的入口管理 | Henrie的小黑屋</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
@@ -157,9 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -242,9 +242,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -270,9 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/11/webpack構建多頁面應用的入口管理/" itemprop="url">webpack構建多頁面應用的入口管理</a></h1>
+          <h1 class="post-title" itemprop="name headline">webpack構建多頁面應用的入口管理</h1>
         
 
         <div class="post-meta">
@@ -319,9 +317,7 @@
       
 
       
-        
-          
-            <p>webpack好用的地方我就不累述了，今天我是想說一下用webpack做多頁面應用，公共文件提取時，入口管理的一點事。</p>
+        <p>webpack好用的地方我就不累述了，今天我是想說一下用webpack做多頁面應用，公共文件提取時，入口管理的一點事。</p>
 <p>第一次聽這個工具的時候是從當時一個同事那知道的，但他的構建方式就不是那麼自動化，需要手動管理entry和chunk。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">	...</div><div class="line">	entry: &#123;</div><div class="line">		<span class="string">"index"</span>: build + <span class="string">"/js/index/index.js"</span>,</div><div class="line">		<span class="string">"my-desktop"</span>: build + <span class="string">"/js/my-desktop/my-desktop.js"</span>,</div><div class="line">		<span class="string">"inquiry-list"</span>: build + <span class="string">"/js/inquiry-list/inquiry-list.js"</span>,</div><div class="line">		<span class="string">"add-inquiry"</span>: build + <span class="string">"/js/add-inquiry/add-inquiry.js"</span>,</div><div class="line">		<span class="string">"inquiry-info"</span>: build + <span class="string">"/js/inquiry-info/inquiry-info.js"</span>,</div><div class="line">		<span class="string">"edit-trade"</span>: build + <span class="string">"/js/edit-trade/edit-trade.js"</span>,</div><div class="line">		<span class="string">"trade-eval-list"</span>: build + <span class="string">"/js/trade-eval-list/trade-eval-list.js"</span></div><div class="line">	&#125;,</div><div class="line">	<span class="attr">plugins</span>: [</div><div class="line">		<span class="keyword">new</span> CommonsChunkPlugin(<span class="string">"commons.js"</span>, [<span class="string">"index"</span>, <span class="string">"my-desktop"</span>, <span class="string">"inquiry-info"</span>]),</div><div class="line">		<span class="keyword">new</span> CommonsChunkPlugin(<span class="string">"commons-list.js"</span>, [<span class="string">"inquiry-list"</span>, <span class="string">"trade-eval-list"</span>]),</div><div class="line">		<span class="keyword">new</span> CommonsChunkPlugin(<span class="string">"commons-edit.js"</span>, [<span class="string">"edit-trade"</span>, <span class="string">"add-inquiry"</span>])</div><div class="line">	]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>如果項目超過幾十個頁面，那將是一個大型車禍現場，而且生成的css文件會變成 common.js.css（</p>
@@ -346,162 +342,72 @@
 <p>路徑錯誤或者路徑裡找不到文件，導致 <code>entries</code> 或 <code>commons</code> 為空。</p>
 <h2 id="最後"><a href="#最後" class="headerlink" title="最後"></a>最後</h2><p>大概就是這麼一個管理思路。這裡只做了最簡單的打包提取方案，某些公司對於庫和框架類文件，是合併打包，單獨打包到一起或者使用cdn通過 <code>&lt;script&gt;</code> 來引入，大家看著辦？</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HenriettaSu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/face.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Henrie的小黑屋">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/10/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2017-05-10T09:56:19+08:00">
-                2017-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/webpack-gulp-前端-自動化構建/" rel="tag"># webpack, gulp, 前端, 自動化構建</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/10/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -509,6 +415,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -528,8 +438,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/face.jpg"
@@ -593,6 +512,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目錄結構"><span class="nav-number">1.</span> <span class="nav-text">目錄結構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-config-js"><span class="nav-number">2.</span> <span class="nav-text">webpack.config.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#獲取入口和分類"><span class="nav-number">2.1.</span> <span class="nav-text">獲取入口和分類</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成配置"><span class="nav-number">2.2.</span> <span class="nav-text">生成配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可能會遇到的錯"><span class="nav-number">3.</span> <span class="nav-text">可能會遇到的錯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最後"><span class="nav-number">4.</span> <span class="nav-text">最後</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -713,6 +648,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
