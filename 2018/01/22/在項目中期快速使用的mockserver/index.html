@@ -1,0 +1,755 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-hk">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mockserver node.js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="致Root。  畢業之後有人跟我說前後端分離，當時我還體會不到那種姿勢的魅力，覺得不就是兩個人有相對平等的關係，兩個人都有各自的話語權，年輕的我還不知道【分離】兩字的意思，直到有一天出現了一個人（。 【你們應該有各自的床，等啪的時候再上去】 於是我開始買自己的床，但是感覺都不是那麼好睡，要不就是床太小太固定了，適應不了我360種姿勢。所以我決定自己造一張床  上面是不正經的前言，接下來我們正經一">
+<meta name="keywords" content="mockserver node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在項目中期快速使用的mockserver">
+<meta property="og:url" content="http://yoursite.com/2018/01/22/在項目中期快速使用的mockserver/index.html">
+<meta property="og:site_name" content="Henrie的小黑屋">
+<meta property="og:description" content="致Root。  畢業之後有人跟我說前後端分離，當時我還體會不到那種姿勢的魅力，覺得不就是兩個人有相對平等的關係，兩個人都有各自的話語權，年輕的我還不知道【分離】兩字的意思，直到有一天出現了一個人（。 【你們應該有各自的床，等啪的時候再上去】 於是我開始買自己的床，但是感覺都不是那麼好睡，要不就是床太小太固定了，適應不了我360種姿勢。所以我決定自己造一張床  上面是不正經的前言，接下來我們正經一">
+<meta property="og:locale" content="zh-hk">
+<meta property="og:updated_time" content="2018-01-22T04:11:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在項目中期快速使用的mockserver">
+<meta name="twitter:description" content="致Root。  畢業之後有人跟我說前後端分離，當時我還體會不到那種姿勢的魅力，覺得不就是兩個人有相對平等的關係，兩個人都有各自的話語權，年輕的我還不知道【分離】兩字的意思，直到有一天出現了一個人（。 【你們應該有各自的床，等啪的時候再上去】 於是我開始買自己的床，但是感覺都不是那麼好睡，要不就是床太小太固定了，適應不了我360種姿勢。所以我決定自己造一張床  上面是不正經的前言，接下來我們正經一">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/22/在項目中期快速使用的mockserver/"/>
+
+
+
+
+
+  <title>在項目中期快速使用的mockserver | Henrie的小黑屋</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Henrie的小黑屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/22/在項目中期快速使用的mockserver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HenriettaSu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henrie的小黑屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在項目中期快速使用的mockserver</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-01-22T12:04:55+08:00">
+                2018-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>致Root。</p>
+</blockquote>
+<p>畢業之後有人跟我說前後端分離，當時我還體會不到那種姿勢的魅力，覺得不就是兩個人有相對平等的關係，兩個人都有各自的話語權，年輕的我還不知道【分離】兩字的意思，直到有一天出現了一個人（。</p>
+<p>【你們應該有各自的床，等啪的時候再上去】</p>
+<p>於是我開始買自己的床，但是感覺都不是那麼好睡，要不就是床太小太固定了，適應不了我360種姿勢。所以我決定自己造一張床</p>
+<hr>
+<p>上面是不正經的前言，接下來我們正經一點hhhh</p>
+<p>就是有人對我說我們要前後端分離，然而根據這個提案實施之後覺得只是前端有了自己的話語權，後端不碰前端代碼，但分離到底分離在哪？沒有本質的感覺。直到有天有個大佬點了我一句：前後端分離應該是有各自的服務器，最後才到環境上一放，微調代碼</p>
+<p>這個服務器在前端就是用node.js搭的mockserver，虛擬了後台的接口返回假數據過來，這就避免了我們在開發過程中互相等待的浪費時間的過程，也極大地減少了聯調的功夫，自己與mockserver交互正確的話，在環境上也不會有什麼大的問題</p>
+<p>但是找了那麼多mockserver，都覺得不是那麼的好用：</p>
+<ol>
+<li>數據管理的方式不是那麼適應團隊合作；</li>
+<li>擴展性太低，不能適應大部分場景，如：出参入參的加密、跨域、自定義請求頭；</li>
+<li>項目已經做到一半了，轉換成本太高；</li>
+</ol>
+<p>既然如此，不如就自己做一個吧</p>
+<h2 id="開始"><a href="#開始" class="headerlink" title="開始"></a>開始</h2><p>雖然沒圖不能看圖說話，但我們大概看碼說話比較簡單，順便打個廣告（。：</p>
+<p><a href="https://github.com/HenriettaSu/root-mockserver" target="_blank" rel="noopener">https://github.com/HenriettaSu/root-mockserver</a></p>
+<p>就基礎server這件事，主要基於express，語死早分支模塊太多自覺描述不清楚，代碼文件就分了兩個：server.js和配置文件config.js</p>
+<h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h3 id="運行"><a href="#運行" class="headerlink" title="運行"></a>運行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<p>默認地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:8084</span><br></pre></td></tr></table></figure>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">config = &#123;</span><br><span class="line">    port: <span class="number">8084</span>,</span><br><span class="line">    accessControlAllowHeaders: <span class="string">'Authorization, userToken'</span>, <span class="comment">// 自定義請求頭</span></span><br><span class="line">    uploadName: <span class="string">'myfile'</span>, <span class="comment">// 上傳文件name屬性</span></span><br><span class="line">    uploadUrl: <span class="string">'/attachement/upload'</span>, <span class="comment">// 上傳url</span></span><br><span class="line">    downloadFileUrl: <span class="string">'/attachement/downloadFile'</span>, <span class="comment">// 下載地址（流）</span></span><br><span class="line">    downloadBase64Url: <span class="string">'/attachement/downloadBase64'</span> <span class="comment">// 下載地址（base64）</span></span><br><span class="line">    transHost: <span class="string">'https://www.google.de'</span>, <span class="comment">// 轉發host</span></span><br><span class="line">    transPath: <span class="string">''</span>, <span class="comment">// 轉發path</span></span><br><span class="line">    useProxy: <span class="literal">false</span>, <span class="comment">// 轉發是否使用代理（若為true，proxyUrl和pac必填一項）</span></span><br><span class="line">    proxyUrl: <span class="string">''</span>, <span class="comment">// 代理地址</span></span><br><span class="line">    pac: <span class="string">''</span> <span class="comment">// pac處理代理</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="吹牛逼"><a href="#吹牛逼" class="headerlink" title="吹牛逼"></a>吹牛逼</h2><p>使用方法在github上有詳細說明了，我就不再累述，這裡就讓我藉講述思路的機會，順便吹一下這個東西到底要怎麼在項目中期快速使用</p>
+<h3 id="數據管理"><a href="#數據管理" class="headerlink" title="數據管理"></a>數據管理</h3><p>在使用mockserver之前，大部分人的假數據都是寫在項目文件中，一方面是冗余不美觀，更過份的是有的項目太早期，代碼根本沒有去註釋混淆，什麼家底都暴露出來給別人看了</p>
+<p>建立數據庫不僅對整個團隊有一定的要求，各種安裝培訓都是成本的一部分，每來一個新人還可能要額外教授數據庫使用，還可能因為電腦環境限制不能安裝數據庫</p>
+<p>所以何不將假數據保存成一個個單獨的json文件？比起別的方法可能運行效率有所遜色，但適應大部分人的開發習慣，簡單明瞭，最重要的是在團隊中管理就是不用額外安裝什麼</p>
+<p>同時以json文件名作為接口名，自動創建接口，省時省力</p>
+<h3 id="跨域，自定義請求頭，嗅探"><a href="#跨域，自定義請求頭，嗅探" class="headerlink" title="跨域，自定義請求頭，嗅探"></a>跨域，自定義請求頭，嗅探</h3><p>對於沒什麼後台經驗的前端來說，我覺得這是一個世紀大坑，既然已經踩過，那我就先解決好這裡</p>
+<p>跨域，允許</p>
+<p>自定義請求頭，配置化</p>
+<p>OPTIONS嗅探，搞定</p>
+<h3 id="擴展"><a href="#擴展" class="headerlink" title="擴展"></a>擴展</h3><p>想法總是很美好的，然而實際上很多團隊的項目已經執行已久，要加入新工具，面臨的最大問題就是上手轉換成本，比如出参入參有加密，項目中另外寫一個免加密的方法給mockserver，成本不說，風險實在太大了</p>
+<p>要如何簡潔便利地對出参入參做擴展，這個問題我認為最好的擴展方法就是不做過多的封裝，畢竟我們是無法兼顧如此之多的項目的各式各樣的複雜需求，所以原汁原味最自由，只要讓大家知道出参和入參在哪，讓他們自己對其進行管理就好，喜歡的話還可以做個分頁</p>
+<h3 id="上傳下載"><a href="#上傳下載" class="headerlink" title="上傳下載"></a>上傳下載</h3><p>上傳下載功能基本是現在的項目離不開的功能點了，具體沒什麼好說的，就是查文件讀取信息</p>
+<p>順帶可以拓展的是，讀取修改json文件，實現PUT和DELETE</p>
+<h3 id="轉發"><a href="#轉發" class="headerlink" title="轉發"></a>轉發</h3><p>（為了與下面一項區分，這裡叫轉發）</p>
+<p>如果要說項目中期引入mockserver最大的阻礙是什麼，那我覺得是原有接口數據</p>
+<p>項目做一半了，突然引入mockserver，調了虛擬服務器的接口就調不通真實環境服務器的接口，兩個服務器成了一個對立的關係，有你無我</p>
+<p>如果項目的設計是某些必須經過登錄等一系列流程才能進入到某個頁面的single page，那就要命了，把所有接口的出参保存一份下來，聽著我都要報警了</p>
+<p>更理想的方法應該是如果在mockserver中找不到這個接口，我們就代理到真實環境中，從真實接口中取數據返回過來</p>
+<p>萬事大吉～</p>
+<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p>僅僅是轉發到真實環境，很多mockserver都考慮到了，但是有的真實項目又有更坑爹的問題：</p>
+<p>出於安全保密性等等原因，有的公司的網絡環境做了限制，訪問外網甚至本公司項目的環境都需要通過代理，這個一般是配置在瀏覽器中配置pac文件或代理地址，終端機dns根本就ping不通這個地址，我們需要對轉發再做一次代理</p>
+<p>關於這方面，世紀大坑是node.js的 <code>http</code> 和 <code>https</code> 有問題，用agent不是拋出 <code>getaddrinfo ENOTFOUND</code> 就是 <code>socket hang up</code>，更過份的是根本走不進取到response的地方，什麼反應都沒有，想查錯都查不了</p>
+<p>如果你自己寫mockserver遇到了這個問題，我同你港，不是你代理地址錯了的問題，改用 <code>unirest</code> 就好</p>
+<h2 id="題外話"><a href="#題外話" class="headerlink" title="題外話"></a>題外話</h2><p>上面吹完牛逼了，在講代理的時候提到了內外網環境的問題，順帶說一下內網環境怎麼用</p>
+<p>因為我們內網環境都是windows，mac我沒試過這樣我就不說了</p>
+<p>首先是node安裝：到node.js的官網下一個免安裝的zip文件，拉到內網環境裡，配置下變量。這方面網上資料很多，我不多說</p>
+<p>然後是模塊，因為不能npm安裝，只能外網安裝好，然後拖到內網環境，可以直接用。需要注意的是記得打包壓縮，否則會文件名太長</p>
+<h2 id="最後"><a href="#最後" class="headerlink" title="最後"></a>最後</h2><p>我認為開發項目情景實在不是一個工具能夠涵蓋的，如果發現解決不了自己的問題，那麼不要猶豫，推開自己做吧</p>
+<p>就是記得別人踩過的坑不要踩www</p>
+<p>如果你有可以完善的點，記得告訴我</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mockserver-node-js/" rel="tag"># mockserver node.js</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/27/不要殺掉妳的前女友-請用深拷貝/" rel="next" title="不要殺掉妳的前女友 - 請用深拷貝">
+                <i class="fa fa-chevron-left"></i> 不要殺掉妳的前女友 - 請用深拷貝
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/face.jpg"
+               alt="HenriettaSu" />
+          <p class="site-author-name" itemprop="name">HenriettaSu</p>
+           
+              <p class="site-description motion-element" itemprop="description">腦子不知道在想什麼的程序媛</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">文章</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">標籤</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/HenriettaSu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#開始"><span class="nav-number">1.</span> <span class="nav-text">開始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝"><span class="nav-number">1.1.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#運行"><span class="nav-number">1.2.</span> <span class="nav-text">運行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">1.3.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#吹牛逼"><span class="nav-number">2.</span> <span class="nav-text">吹牛逼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#數據管理"><span class="nav-number">2.1.</span> <span class="nav-text">數據管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域，自定義請求頭，嗅探"><span class="nav-number">2.2.</span> <span class="nav-text">跨域，自定義請求頭，嗅探</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#擴展"><span class="nav-number">2.3.</span> <span class="nav-text">擴展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上傳下載"><span class="nav-number">2.4.</span> <span class="nav-text">上傳下載</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#轉發"><span class="nav-number">2.5.</span> <span class="nav-text">轉發</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理"><span class="nav-number">2.6.</span> <span class="nav-text">代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#題外話"><span class="nav-number">3.</span> <span class="nav-text">題外話</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最後"><span class="nav-number">4.</span> <span class="nav-text">最後</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HenriettaSu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
