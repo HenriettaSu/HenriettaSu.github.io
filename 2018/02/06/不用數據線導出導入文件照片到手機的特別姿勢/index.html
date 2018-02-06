@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="axios timeout javascript express node.js," />
+  <meta name="keywords" content="node.js," />
 
 
 
@@ -90,18 +90,21 @@
 
 
 
-<meta name="description" content="最近用express搭mockserver，克服各種網絡環境限制之後，總算一切順利 但是我們的項目基本都是移動端，就要讓手機連上電腦了，這很好辦，同一個局域網就可以了 吃生菜一樣在手機上打開項目網頁，請求數據⋯⋯ Was! 竟然請求不到？？？Aber warum!? 排查大寫絕望地開始查錯，非常奇怪的是，我看服務器的日誌，接收到參數了，但是偏偏沒有輸出http日誌，看起來response沒有clo">
-<meta name="keywords" content="axios timeout javascript express node.js">
+<meta name="description" content="想手機電腦文件互發但身邊沒有數據線怎麼辦？ 私密文件不想經過別人的服務器怎麼辦？ 用軟件廣告和全家桶太多怎麼辦？ 身份證照片不想用QQ發怎麼辦？ 網絡環境限制不能上外網怎麼辦？ 公司限制任何非辦公軟件都不能裝怎麼辦？ 文件太大郵件也發不出去怎麼辦？ 電腦沒有藍牙怎麼辦？ 沒關係，我們有程序員的騷操作 說在前面 這個智障姿勢除了作逼一般不會有人用得上； 這個作逼需要有一丟丟動手能力和折騰心思，比如我">
+<meta name="keywords" content="node.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="safari下使用axios觸發timeout">
-<meta property="og:url" content="http://yoursite.com/2018/01/23/safari下使用axios觸發timeout/index.html">
+<meta property="og:title" content="不用數據線導出導入文件照片到手機的特別姿勢">
+<meta property="og:url" content="http://yoursite.com/2018/02/06/不用數據線導出導入文件照片到手機的特別姿勢/index.html">
 <meta property="og:site_name" content="Henrie的小黑屋">
-<meta property="og:description" content="最近用express搭mockserver，克服各種網絡環境限制之後，總算一切順利 但是我們的項目基本都是移動端，就要讓手機連上電腦了，這很好辦，同一個局域網就可以了 吃生菜一樣在手機上打開項目網頁，請求數據⋯⋯ Was! 竟然請求不到？？？Aber warum!? 排查大寫絕望地開始查錯，非常奇怪的是，我看服務器的日誌，接收到參數了，但是偏偏沒有輸出http日誌，看起來response沒有clo">
+<meta property="og:description" content="想手機電腦文件互發但身邊沒有數據線怎麼辦？ 私密文件不想經過別人的服務器怎麼辦？ 用軟件廣告和全家桶太多怎麼辦？ 身份證照片不想用QQ發怎麼辦？ 網絡環境限制不能上外網怎麼辦？ 公司限制任何非辦公軟件都不能裝怎麼辦？ 文件太大郵件也發不出去怎麼辦？ 電腦沒有藍牙怎麼辦？ 沒關係，我們有程序員的騷操作 說在前面 這個智障姿勢除了作逼一般不會有人用得上； 這個作逼需要有一丟丟動手能力和折騰心思，比如我">
 <meta property="og:locale" content="zh-hk">
-<meta property="og:updated_time" content="2018-01-23T03:15:41.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/02/06/image/20180206-104205.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/06/image/20180206-104543.png">
+<meta property="og:updated_time" content="2018-02-06T03:07:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="safari下使用axios觸發timeout">
-<meta name="twitter:description" content="最近用express搭mockserver，克服各種網絡環境限制之後，總算一切順利 但是我們的項目基本都是移動端，就要讓手機連上電腦了，這很好辦，同一個局域網就可以了 吃生菜一樣在手機上打開項目網頁，請求數據⋯⋯ Was! 竟然請求不到？？？Aber warum!? 排查大寫絕望地開始查錯，非常奇怪的是，我看服務器的日誌，接收到參數了，但是偏偏沒有輸出http日誌，看起來response沒有clo">
+<meta name="twitter:title" content="不用數據線導出導入文件照片到手機的特別姿勢">
+<meta name="twitter:description" content="想手機電腦文件互發但身邊沒有數據線怎麼辦？ 私密文件不想經過別人的服務器怎麼辦？ 用軟件廣告和全家桶太多怎麼辦？ 身份證照片不想用QQ發怎麼辦？ 網絡環境限制不能上外網怎麼辦？ 公司限制任何非辦公軟件都不能裝怎麼辦？ 文件太大郵件也發不出去怎麼辦？ 電腦沒有藍牙怎麼辦？ 沒關係，我們有程序員的騷操作 說在前面 這個智障姿勢除了作逼一般不會有人用得上； 這個作逼需要有一丟丟動手能力和折騰心思，比如我">
+<meta name="twitter:image" content="http://yoursite.com/2018/02/06/image/20180206-104205.png">
 
 
 
@@ -129,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/23/safari下使用axios觸發timeout/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/06/不用數據線導出導入文件照片到手機的特別姿勢/"/>
 
 
 
 
 
-  <title>safari下使用axios觸發timeout | Henrie的小黑屋</title>
+  <title>不用數據線導出導入文件照片到手機的特別姿勢 | Henrie的小黑屋</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
@@ -264,7 +267,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/safari下使用axios觸發timeout/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/不用數據線導出導入文件照片到手機的特別姿勢/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HenriettaSu">
@@ -281,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">safari下使用axios觸發timeout</h1>
+          <h1 class="post-title" itemprop="name headline">不用數據線導出導入文件照片到手機的特別姿勢</h1>
         
 
         <div class="post-meta">
@@ -293,8 +296,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-01-23T10:30:55+08:00">
-                2018-01-23
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2018-02-06T09:57:32+08:00">
+                2018-02-06
               </time>
             
 
@@ -328,36 +331,46 @@
       
 
       
-        <p>最近用express搭mockserver，克服各種網絡環境限制之後，總算一切順利</p>
-<p>但是我們的項目基本都是移動端，就要讓手機連上電腦了，這很好辦，同一個局域網就可以了</p>
-<p>吃生菜一樣在手機上打開項目網頁，請求數據⋯⋯</p>
-<p>Was! 竟然請求不到？？？Aber warum!?</p>
-<h2 id="排查"><a href="#排查" class="headerlink" title="排查"></a>排查</h2><p>大寫絕望地開始查錯，非常奇怪的是，我看服務器的日誌，接收到參數了，但是偏偏沒有輸出http日誌，看起來response沒有close的樣子</p>
-<p>抓包一看，請求確實是成功返回數據了，難道是服務器跨域沒弄好？</p>
-<p>試著把跨域設置關掉，噢這下電腦真說你丫沒允許跨域了，那看來跨域設置是成功的</p>
-<p><strong>跟跨域沒有半毛錢關係</strong></p>
-<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><p>一臉懵逼地亂點各種請求數據，順手上傳了個圖片，發現竟然傳成功了，電腦也接到了這張照片</p>
-<p>因為上傳照片用的是另一套獨立的東西，敢情是axios？好吧那把error alert出來</p>
-<blockquote>
-<p>timeout of 30000ms exceeded</p>
-</blockquote>
-<p>喵喵喵喵喵？？？光陰似箭都不帶一眨眼就30秒過去吧！</p>
-<p>關掉</p>
-<p>竟然！就順利請求到了！</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.http.defaults.timeout = <span class="number">30</span> * <span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
-<p>罪魁禍首竟然是這貨，把所有請求攔截掉了，看了下源碼，依賴 <code>http</code> 和 <code>https</code> 模塊</p>
-<p>鑒於這兩坑爹玩意proxy可以各種掛起各種沒響應，我已經沒有什麼是不能接受的了（不管三七二十一黑了再說</p>
-<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><ol>
-<li>safari瀏覽器下，axios + express會因為timeout的設置而攔截了所有請求，ios強制全都使用safari的內核，所以都有這個問題，android是沒問題的。我也不知道為什麼；</li>
-<li>上次也提到過，http和https模塊使用代理的話會導致沒有響應或者 <code>socket hang up</code>，當時試著使用axios，也是同樣的狀況。最後換成unirest就好了；</li>
+        <p>想手機電腦文件互發但身邊沒有數據線怎麼辦？</p>
+<p>私密文件不想經過別人的服務器怎麼辦？</p>
+<p>用軟件廣告和全家桶太多怎麼辦？</p>
+<p>身份證照片不想用QQ發怎麼辦？</p>
+<p>網絡環境限制不能上外網怎麼辦？</p>
+<p>公司限制任何非辦公軟件都不能裝怎麼辦？</p>
+<p>文件太大郵件也發不出去怎麼辦？</p>
+<p>電腦沒有藍牙怎麼辦？</p>
+<p>沒關係，我們有程序員的騷操作</p>
+<h2 id="說在前面"><a href="#說在前面" class="headerlink" title="說在前面"></a>說在前面</h2><ol>
+<li>這個智障姿勢除了作逼一般不會有人用得上；</li>
+<li>這個作逼需要有一丟丟動手能力和折騰心思，比如我戀人（沒錯我的用戶畫像是這個作逼；</li>
+<li>力求文檔不會很複雜，甚至沒有文檔；</li>
+<li>但是這個作逼其實並不介意身份證照片通過QQ來傳輸（；</li>
 </ol>
-<p>我的猜測啊，是axios依賴http和https，而unirest依賴的是express，大概是存在什麼兼容問題吧？</p>
-<p>safari用axios請求真實環境，無論是代理還是timeout，都沒有出現過問題</p>
-<h2 id="最後"><a href="#最後" class="headerlink" title="最後"></a>最後</h2><p>用express就搭配unirest吧</p>
-<p>萬一像我一樣已經使用axios，那就把timeout先關掉咯</p>
-<hr>
-<p>btw抓完包之後不要忘記把手機的代理關掉，有次在家想點外賣，發現app打不開網頁，但手機確實又是可以上網，戀人表示妳手機有毒吧？</p>
-<p>後來過了一個月才想起我忘記把代理關掉（。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>受mockserver的啟發，我覺得可以做一個文件傳輸用的服務器，還不需要很複雜，只需要有上傳下載的接口就可以實現文件傳輸了。也就是說將中轉服務器轉移到自己上面</p>
+<p>接下來你需要有三樣東西：</p>
+<ol>
+<li>電腦；</li>
+<li>第二個電腦手機ipad總之能上網的設備；</li>
+<li>同一個Wi-Fi環境；</li>
+</ol>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p>還是那句你要裝node.js，網上大把教程，我不囉嗦了，默認你已經裝好</p>
+<p>然後到github下載代碼</p>
+<p><a href="https://github.com/HenriettaSu/file-manager" target="_blank" rel="noopener">file-manager</a></p>
+<p>在終端機中cd到代碼目錄</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i</span><br></pre></td></tr></table></figure>
+<p>配置，不需要的</p>
+<h2 id="運行"><a href="#運行" class="headerlink" title="運行"></a>運行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
+<p><img src="../image/20180206-104205.png" alt="運行"></p>
+<p>就是那麽簡單～</p>
+<p>打碼的地方就是服務器地址，也就是電腦ip，貼心的我還為你們生成了二維碼，運行的時候自動生成在瀏覽器彈出</p>
+<p>用瀏覽器打開地址之後會看到一個超級吃藕的介面：</p>
+<p><img src="../image/20180206-104543.png" alt="介面"></p>
+<h2 id="導出文件"><a href="#導出文件" class="headerlink" title="導出文件"></a>導出文件</h2><p>點擊選擇檔案，然後點上傳，然後在項目的upload文件夾中就可以找到那個文件。可以批量上傳</p>
+<h2 id="導入文件"><a href="#導入文件" class="headerlink" title="導入文件"></a>導入文件</h2><p>因為所有請求都必須是客戶端發起，所以要發文件給手機的話也需要手機主要請求</p>
+<p>在下載前面的輸入框中輸入文件名（帶後綴），如：01.jpg，然後點下載</p>
+<h2 id="最後"><a href="#最後" class="headerlink" title="最後"></a>最後</h2><p>我設置了每個請求超過20分鐘才會斷開，一般在同一個Wi-Fi環境下傳輸文件是不會超過那麽久的（傳了個400M的文件也就不到一分鐘的事），如果文件真的非常非常大或者網絡捉急的話，將 <code>server.js</code> 中的 <code>app.use(timeout(&#39;1200s&#39;))</code> 改成更長的時間就好</p>
+<p>再也不用捉急用QQ發身份證照這件事了</p>
+<p>再也不用捉急給同事傳文件還得分包了</p>
 
       
     </div>
@@ -387,7 +400,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/axios-timeout-javascript-express-node-js/" rel="tag"># axios timeout javascript express node.js</a>
+            <a href="/tags/node-js/" rel="tag"># node.js</a>
           
         </div>
       
@@ -400,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/22/在項目中期快速使用的mockserver/" rel="next" title="在項目中期快速使用的mockserver">
-                <i class="fa fa-chevron-left"></i> 在項目中期快速使用的mockserver
+              <a href="/2018/01/23/safari下使用axios觸發timeout/" rel="next" title="safari下使用axios觸發timeout">
+                <i class="fa fa-chevron-left"></i> safari下使用axios觸發timeout
               </a>
             
           </div>
@@ -409,10 +422,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/06/不用數據線導出導入文件照片到手機的特別姿勢/" rel="prev" title="不用數據線導出導入文件照片到手機的特別姿勢">
-                不用數據線導出導入文件照片到手機的特別姿勢 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -543,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#排查"><span class="nav-number">1.</span> <span class="nav-text">排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#axios"><span class="nav-number">2.</span> <span class="nav-text">axios</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑"><span class="nav-number">3.</span> <span class="nav-text">坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最後"><span class="nav-number">4.</span> <span class="nav-text">最後</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#說在前面"><span class="nav-number">1.</span> <span class="nav-text">說在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝"><span class="nav-number">3.</span> <span class="nav-text">安裝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#運行"><span class="nav-number">4.</span> <span class="nav-text">運行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#導出文件"><span class="nav-number">5.</span> <span class="nav-text">導出文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#導入文件"><span class="nav-number">6.</span> <span class="nav-text">導入文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最後"><span class="nav-number">7.</span> <span class="nav-text">最後</span></a></li></ol></div>
             
 
           </div>
